@@ -140,9 +140,70 @@ Controla toda la interfaz gráfica y la interacción con los usuarios.
 
 ---
 
+Diagrama de clase
+
++--------------------+
+|     Usuario        | <-- Clase abstracta
++--------------------+
+| - _cedula: str     |
+| - _edad: int       |
++--------------------+
+| + obtener_turno(): |
+|   str (abstracto)  |
++--------------------+
+         ▲
+         |
++------------------------+      +------------------------+
+| UsuarioTerceraEdad     |      | UsuarioGeneral         |
++------------------------+      +------------------------+
+| + obtener_turno(): str |      | + obtener_turno(       |
+|                        |      |   tipo_servicio: str): |
+|                        |      |   str                 |
++------------------------+      +------------------------+
+
++---------------------------+
+|      TurnoManager         |
++---------------------------+
+| - _contador_turnos: int   |
++---------------------------+
+| + siguiente_turno(): int  |
++---------------------------+
+
++---------------------------+
+|      DigiturnoVista       |
++---------------------------+
+| + __init__(root,          |
+|   controlador)            |
+| + crear_interfaz_principal|
+| + mostrar_ventana_datos() |
+| + mostrar_menu(           |
+|   opciones: dict,         |
+|   callback: function)     |
++---------------------------+
+
++----------------------------+
+|   DigiturnoControlador     |
++----------------------------+
+| + __init__(root)           |
+| + mostrar_ventana_datos()  |
+| + capturar_datos(          |
+|   cedula: str, edad: str)  |
+| + mostrar_turno(           |
+|   usuario, opcion: str,    |
+|   prefix: str)             |
+| + volver_a_inicio_desde_   |
+|   datos()                  |
+| + volver_a_inicio_desde_   |
+|   menu()                   |
++----------------------------+
+
+
+
+
+
 ## Créditos
 
 **Desarrollador:**
-Mai Col
-Técnico en mantenimiento de equipos de cómputo
+Maicol Pestana
+Grupo: 3E
 Estudiante de Ingeniería de Sistemas
