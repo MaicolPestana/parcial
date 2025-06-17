@@ -142,61 +142,47 @@ Controla toda la interfaz gráfica y la interacción con los usuarios.
 
 Diagrama de clase
 
-+--------------------+
-|     Usuario        | <-- Clase abstracta
-+--------------------+
-| - _cedula: str     |
-| - _edad: int       |
-+--------------------+
-| + obtener_turno(): |
-|   str (abstracto)  |
-+--------------------+
-         ▲
++---------------------+
+|      <<ABC>>        |
+|     Usuario         |
++---------------------+
+| - _cedula: str      |
+| - _edad: int        |
++---------------------+
+| + __init__(str, int)|
+| + obtener_turno()   |
++---------------------+
+         ^
          |
-+------------------------+      +------------------------+
-| UsuarioTerceraEdad     |      | UsuarioGeneral         |
-+------------------------+      +------------------------+
-| + obtener_turno(): str |      | + obtener_turno(       |
-|                        |      |   tipo_servicio: str): |
-|                        |      |   str                 |
-+------------------------+      +------------------------+
+         |
++--------+---------+       +------------------+
+| UsuarioTerceraEdad|       |   TurnoManager   |
++-------------------+       +------------------+
+| + obtener_turno() |       | - _contador_turnos: int|
++-------------------+       +------------------+
+         ^                  | + siguiente_turno()|
+         |                  +------------------+
+         |
++--------+---------+
+|  UsuarioGeneral  |
++-------------------+
+| + obtener_turno(str)|
++-------------------+
 
-+---------------------------+
-|      TurnoManager         |
-+---------------------------+
-| - _contador_turnos: int   |
-+---------------------------+
-| + siguiente_turno(): int  |
-+---------------------------+
-
-+---------------------------+
-|      DigiturnoVista       |
-+---------------------------+
-| + __init__(root,          |
-|   controlador)            |
-| + crear_interfaz_principal|
-| + mostrar_ventana_datos() |
-| + mostrar_menu(           |
-|   opciones: dict,         |
-|   callback: function)     |
-+---------------------------+
-
-+----------------------------+
-|   DigiturnoControlador     |
-+----------------------------+
-| + __init__(root)           |
-| + mostrar_ventana_datos()  |
-| + capturar_datos(          |
-|   cedula: str, edad: str)  |
-| + mostrar_turno(           |
-|   usuario, opcion: str,    |
-|   prefix: str)             |
-| + volver_a_inicio_desde_   |
-|   datos()                  |
-| + volver_a_inicio_desde_   |
-|   menu()                   |
-+----------------------------+
-
++-------------------+
+|   DigiturnoApp    |
++-------------------+
+| - root: Tk        |
++-------------------+
+| + __init__(Tk)    |
+| - _crear_interfaz_principal()|
+| - _mostrar_ventana_datos()|
+| - _capturar_datos()|
+| - _mostrar_menu_o_turno()|
+| - _mostrar_ventana_menu()|
+| - _mostrar_turno()|
+| - _volver_a_inicio...()|
++-------------------+
 
 
 
